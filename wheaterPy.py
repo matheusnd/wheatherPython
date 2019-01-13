@@ -2,6 +2,7 @@ from pprint import pprint
 import requests
 import json
 import datetime
+import communication
 
 # Creating variables
 date_proc=datetime.date.today().strftime('%Y%m%d')
@@ -24,11 +25,13 @@ def readCityID(country):
         
     return(listCityID)                
 
-ids=','.join(str(e) for e in readCityID('DE'))
+ids=','.join(str(e) for e in readCityID('BR'))
 
 url='http://api.openweathermap.org/data/2.5/group?id={}&units=metric&APPID={}'.format(ids,APIKEY)
 r = requests.get(url)
 dictRequest=r.json()
 
-with open(fileResult,'w') as f:
-    f.write(json.dumps(dictRequest))
+print(dictRequest)
+
+# with open(fileResult,'w') as f:
+#     f.write(json.dumps(dictRequest))
